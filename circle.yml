@@ -1,0 +1,61 @@
+#machine:
+#   php:
+#      version: 5.6.30
+
+machine:
+  php:
+    # php version is specified to make it possible to change php settings
+    # see below php.ini is updated
+    version: 5.6.17
+
+dependencies:
+  pre:
+    # load memcached module
+    - php init --env=Development --overwrite=n
+    - composer global require fxp/composer-asset-plugin:@dev
+    - composer global update
+    - composer install --prefer-dist
+    - composer global require "codeception/codeception=2.0.*"
+    - composer global require "codeception/specify=*"
+    - composer global require "codeception/verify=*"
+    - sudo curl -LsS http://codeception.com/codecept.phar -o /usr/local/bin/codecept
+    - sudo chmod a+x /usr/local/bin/codecept
+#    - sudo apt-get update
+#    - composer install
+#    - php yii migrate
+#    - sudo apt-get install libmemcached-dev
+#    - printf "\n" | pecl install -f memcached-2.1.0
+#    - echo "extension = memcached.so" >> /opt/circleci/php/$(phpenv global)/etc/php.ini
+test:
+   pre:
+#        - sudo pear config-set auto_discover 1
+#        - mysql circle_test < mydb.sql
+#        - cd /home/ubuntu/yii/backend/tests
+        - ls
+        - codecept
+        - cd backend/tests && codecept bootstrap
+        - cd backend/tests && codecept build
+        - cd backend/tests && codecept run
+#        - phpunit unit/LeadTest.php
+#        - phpunit functional/SiteTest.php
+#- sudo python setup.py install: # note the colon here
+#    pwd: litecoin_scrypt
+
+#machine:
+#  timezone:
+#
+#  php:
+#    version: 5.6.17
+#
+#  enviroment:
+#    WP_VERSION: latest
+#    CIRCLE_ENV: test
+#
+#dependencies:
+#  pre:
+#
+#  override:
+#
+#test:
+#  override:
+#    -php unit
