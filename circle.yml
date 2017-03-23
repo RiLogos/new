@@ -11,7 +11,7 @@ machine:
 dependencies:
   pre:
     # load memcached module
-    - php init --env=Development --overwrite=n
+    #- php init --env=Development --overwrite=n
     - composer global require fxp/composer-asset-plugin:@dev
     - composer global update
     - composer install --prefer-dist
@@ -21,7 +21,7 @@ dependencies:
     - sudo curl -LsS http://codeception.com/codecept.phar -o /usr/local/bin/codecept
     - sudo chmod a+x /usr/local/bin/codecept
 #    - sudo apt-get update
-#    - composer install
+    - composer install
 #    - php yii migrate
 #    - sudo apt-get install libmemcached-dev
 #    - printf "\n" | pecl install -f memcached-2.1.0
