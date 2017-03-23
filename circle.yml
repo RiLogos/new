@@ -33,7 +33,7 @@ test:
 #        - cd /home/ubuntu/yii/backend/tests
         - ls
         - codecept
-        - cd backend/tests && codecept bootstrap
+        # - cd backend/tests && codecept bootstrap
         - cd backend/tests && codecept build
         - cd backend/tests && codecept run
 #        - phpunit unit/LeadTest.php
